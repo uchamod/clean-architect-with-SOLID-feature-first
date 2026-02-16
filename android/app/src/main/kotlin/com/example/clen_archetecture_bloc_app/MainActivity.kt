@@ -1,0 +1,5 @@
+package com.example.clen_archetecture_bloc_app
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
