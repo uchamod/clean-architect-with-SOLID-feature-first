@@ -53,7 +53,7 @@ class _SingupPageState extends State<SingupPage> {
                   ),
                   SizedBox(height: 48),
                   // sing up button
-                  AuthButton(buttonText: "Sing Up"),
+                  AuthButton(buttonText: "Sing Up", onPressed: () {  },),
                   SizedBox(height: 12),
                   //register insted
                   RichText(
