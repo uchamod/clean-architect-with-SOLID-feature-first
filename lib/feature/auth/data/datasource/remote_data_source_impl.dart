@@ -1,13 +1,13 @@
 import 'package:clen_archetecture_bloc_app/core/error/exception.dart';
+import 'package:clen_archetecture_bloc_app/feature/auth/data/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class RemoteDataSource {
-  Future<String> loginWithEmailAndPassword({
-    required String name,
+  Future<UserModel> loginWithEmailAndPassword({
     required String email,
     required String password,
   });
-  Future<String> registerWithEmailAndPassword({
+  Future<UserModel> registerWithEmailAndPassword({
     required String name,
     required String email,
     required String password,
@@ -19,16 +19,29 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   RemoteDataSourceImpl({required this.supabaseClient});
   @override
-  Future<String> loginWithEmailAndPassword({
-    required String name,
+  Future<UserModel> loginWithEmailAndPassword({
     required String email,
     required String password,
-  }) async{
-     return "";
+  }) async {
+    try {
+      final authResponse = await supabaseClient.auth.signInWithPassword(
+        password: password,
+        email: email,
+      );
+      if (authResponse.user == null) {
+        print("user is null");
+        throw ServerException(message: "user is null");
+      }
+      print("user id is ${authResponse.user!.id}");
+      return UserModel.fromJson(authResponse.user!.toJson());
+    } catch (e) {
+      print("user stored issue is ${e.toString()}");
+      throw ServerException(message: e.toString());
+    }
   }
 
   @override
-  Future<String> registerWithEmailAndPassword({
+  Future<UserModel> registerWithEmailAndPassword({
     required String name,
     required String email,
     required String password,
@@ -40,10 +53,13 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         data: {"name": name},
       );
       if (authResponse.user == null) {
+        print("user is null");
         throw ServerException(message: "user is null");
       }
-      return authResponse.user!.id;
+      print("user id is ${authResponse.user!.id}");
+      return UserModel.fromJson(authResponse.user!.toJson());
     } catch (e) {
+      print("user stored issue is ${e.toString()}");
       throw ServerException(message: e.toString());
     }
   }

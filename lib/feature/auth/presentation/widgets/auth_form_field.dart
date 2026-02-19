@@ -35,8 +35,31 @@ class AuthFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: AppTheme.lableTextTheme,
-        contentPadding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-        enabledBorder: _textborder(),
+        contentPadding: EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(
+            color: AppColorPallete.gradient1,
+            width: 1,
+            style: BorderStyle.solid,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(
+            color: AppColorPallete.gradient1,
+            width: 1,
+            style: BorderStyle.solid,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(
+            color: AppColorPallete.gradient1,
+            width: 1,
+            style: BorderStyle.solid,
+          ),
+        ),
       ),
     );
   }

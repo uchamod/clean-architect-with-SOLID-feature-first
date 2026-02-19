@@ -13,8 +13,8 @@ final class AuthFailure extends AuthState {
   AuthFailure({required this.message});
 }
 
-final class AuthSuccsuss extends AuthState {
-  final String uid;
+final class AuthSuccess extends AuthState {
+  final User user;
 
-  AuthSuccsuss({required this.uid});
+  AuthSuccess({required this.user});
 }

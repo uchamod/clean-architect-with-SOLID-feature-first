@@ -2,6 +2,7 @@ import 'package:clen_archetecture_bloc_app/core/secrets/app_secrets.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/data/datasource/remote_data_source_impl.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/data/repository/auth_repository_impl.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/domain/repository/auth_repository.dart';
+import 'package:clen_archetecture_bloc_app/feature/auth/domain/usecase/user_login_usecase.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/domain/usecase/user_register_usecase.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -30,8 +31,14 @@ void _initAuth() {
   serviceLocator.registerFactory(
     () => UserRegisterUsecase(authRepository: serviceLocator()),
   );
+  serviceLocator.registerFactory(
+    () => UserLoginUsecase(authRepository: serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton(
-    () => AuthBloc(userRegisterUsecase: serviceLocator()),
+    () => AuthBloc(
+      userRegisterUsecase: serviceLocator(),
+      userLoginUsecase: serviceLocator(),
+    ),
   );
 }

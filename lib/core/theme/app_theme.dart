@@ -23,7 +23,7 @@ class AppTheme {
   );
   static final lableTextTheme = GoogleFonts.poppins(
     color: AppColorPallete.whiteColor,
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: FontWeight.normal,
   );
 }
