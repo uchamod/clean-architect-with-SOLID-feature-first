@@ -1,4 +1,4 @@
-import 'package:clen_archetecture_bloc_app/feature/auth/domain/entity/user.dart';
+import 'package:clen_archetecture_bloc_app/core/entity/user.dart';
 
 class UserModel extends User {
   UserModel({required super.id, required super.email, required super.name});
