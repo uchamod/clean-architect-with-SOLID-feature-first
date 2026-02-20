@@ -26,4 +26,13 @@ class AppTheme {
     fontSize: 11,
     fontWeight: FontWeight.normal,
   );
+
+  static final inputFieldDecoration = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(16),
+    borderSide: BorderSide(
+      color: AppColorPallete.gradient1,
+      width: 1,
+      style: BorderStyle.solid,
+    ),
+  );
 }

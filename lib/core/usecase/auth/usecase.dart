@@ -5,3 +5,5 @@ import 'package:fpdart/fpdart.dart';
 abstract interface class Usecase<SuccsussType, Parms> {
   Future<Either<Faliure, SuccsussType>> call(Parms parms);
 }
+
+class NoParams {}

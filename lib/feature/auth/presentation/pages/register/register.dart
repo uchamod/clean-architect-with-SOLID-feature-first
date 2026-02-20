@@ -4,6 +4,7 @@ import 'package:clen_archetecture_bloc_app/core/routes/route_names.dart';
 import 'package:clen_archetecture_bloc_app/core/theme/app_colors.dart';
 import 'package:clen_archetecture_bloc_app/core/theme/app_theme.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/bloc/auth_bloc.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/presentation/pages/home.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/widgets/auth_button.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/widgets/auth_form_field.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,9 @@ class _SignUpPageState extends State<SignUpPage> {
               ).showSnackBar(SnackBar(content: Text(state.message)));
             }
             if (state is AuthSuccess) {
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => HomePage()));
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("User Registered Successfully")),
               );

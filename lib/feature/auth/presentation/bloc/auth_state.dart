@@ -14,7 +14,7 @@ final class AuthFailure extends AuthState {
 }
 
 final class AuthSuccess extends AuthState {
-  final User user;
+  final User? user;
 
   AuthSuccess({required this.user});
 }

@@ -4,20 +4,21 @@ import 'package:clen_archetecture_bloc_app/core/routes/route_names.dart';
 import 'package:clen_archetecture_bloc_app/core/theme/app_colors.dart';
 import 'package:clen_archetecture_bloc_app/core/theme/app_theme.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/bloc/auth_bloc.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/presentation/pages/home.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/widgets/auth_button.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/widgets/auth_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class SingupPage extends StatefulWidget {
-  const SingupPage({super.key});
+class SingInPage extends StatefulWidget {
+  const SingInPage({super.key});
 
   @override
-  State<SingupPage> createState() => _SingupPageState();
+  State<SingInPage> createState() => _SingInPageState();
 }
 
-class _SingupPageState extends State<SingupPage> {
+class _SingInPageState extends State<SingInPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isVisible = false;
@@ -45,6 +46,9 @@ class _SingupPageState extends State<SingupPage> {
               ).showSnackBar(SnackBar(content: Text(state.message)));
             }
             if (state is AuthSuccess) {
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => HomePage()));
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("User Login Successfully")),
               );
