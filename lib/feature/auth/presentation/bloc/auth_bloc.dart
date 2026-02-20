@@ -1,6 +1,6 @@
 import 'package:clen_archetecture_bloc_app/core/cubit/app_user_cubit/app_user_cubit.dart';
 import 'package:clen_archetecture_bloc_app/core/entity/user.dart';
-import 'package:clen_archetecture_bloc_app/core/usecase/usecase.dart';
+import 'package:clen_archetecture_bloc_app/core/usecase/auth/usecase.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/domain/usecase/get_current_user_usecase.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/domain/usecase/user_login_usecase.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/domain/usecase/user_register_usecase.dart';

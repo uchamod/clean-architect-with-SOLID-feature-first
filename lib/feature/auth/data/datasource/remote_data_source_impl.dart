@@ -83,12 +83,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
             .from("profiles")
             .select()
             .eq('id', getCurrentUserSession!.user.id);
-        print("user avalible $userData");
+       // print("user avalible $userData");
         return UserModel.fromJson(
           userData.first,
         ).copyWith(email: getCurrentUserSession!.user.email);
       }
-      print("user not avalible");
+     // print("user not avalible");
       return null;
     } on ServerException catch (e) {
       throw ServerException(message: e.toString());
