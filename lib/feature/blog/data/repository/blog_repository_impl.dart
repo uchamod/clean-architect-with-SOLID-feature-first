@@ -9,7 +9,7 @@ import 'package:fpdart/src/either.dart';
 import 'package:uuid/uuid.dart';
 
 class BlogRepositoryImpl implements BlogRepository {
-  final RemoteDataSource remoteDataSource;
+  final BlogRemoteDataSource remoteDataSource;
 
   BlogRepositoryImpl({required this.remoteDataSource});
 
@@ -32,11 +32,11 @@ class BlogRepositoryImpl implements BlogRepository {
         updatedAt: DateTime.now(),
       );
 
-      final String imageUrl = await remoteDataSource.uploadBlogImage(
+      final imageUrl = await remoteDataSource.uploadBlogImage(
         blog: blogModel,
         image: image,
       );
-      blogModel.copyWith(imageUrl: imageUrl);
+      blogModel = blogModel.copyWith(imageUrl: imageUrl);
 
       final blog = await remoteDataSource.uploadBlog(blog: blogModel);
       return right(blog);
@@ -47,13 +47,13 @@ class BlogRepositoryImpl implements BlogRepository {
     }
   }
 
-  // @override
-  // Future<Either<Faliure, List<BlogModel>>> getAllBlogs() async {
-  //   try {
-  //     //final blogs = await remoteDataSource.getAllBlogs();
-  //     return right(blogs);
-  //   } catch (e) {
-  //     return left(Faliure(statusCode: 500, message: e.toString()));
-  //   }
-  // }
+  @override
+  Future<Either<Faliure, List<BlogModel>>> getAllBlogs() async {
+    try {
+      final blogs = await remoteDataSource.getAllBlogs();
+      return right(blogs);
+    } catch (e) {
+      return left(Faliure(statusCode: 500, message: e.toString()));
+    }
+  }
 }

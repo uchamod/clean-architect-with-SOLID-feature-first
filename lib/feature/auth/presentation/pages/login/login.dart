@@ -3,10 +3,12 @@ import 'package:clen_archetecture_bloc_app/core/constant/size_extensions.dart';
 import 'package:clen_archetecture_bloc_app/core/routes/route_names.dart';
 import 'package:clen_archetecture_bloc_app/core/theme/app_colors.dart';
 import 'package:clen_archetecture_bloc_app/core/theme/app_theme.dart';
+import 'package:clen_archetecture_bloc_app/core/utils/snack_bar.dart';
+import 'package:clen_archetecture_bloc_app/core/widgets/loading_indicator.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/bloc/auth_bloc.dart';
-import 'package:clen_archetecture_bloc_app/feature/blog/presentation/pages/home.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/widgets/auth_button.dart';
 import 'package:clen_archetecture_bloc_app/feature/auth/presentation/widgets/auth_form_field.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/presentation/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -41,22 +43,18 @@ class _SingInPageState extends State<SingInPage> {
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is AuthFailure) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.message)));
+              snackBar(context, state.message);
             }
             if (state is AuthSuccess) {
               Navigator.of(
                 context,
               ).push(MaterialPageRoute(builder: (context) => HomePage()));
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("User Login Successfully")),
-              );
+              snackBar(context, "User Loggedin Successfully");
             }
           },
           builder: (context, state) {
             if (state is AuthLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const Loader();
             }
             return SingleChildScrollView(
               child: Column(

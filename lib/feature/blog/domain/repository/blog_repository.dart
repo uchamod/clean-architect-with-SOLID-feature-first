@@ -12,5 +12,5 @@ abstract interface class BlogRepository {
     required List<String> tags,
     required File image,
   });
-  // Future<Either<Faliure, List<Blog>>> getAllBlogs();
+   Future<Either<Faliure, List<Blog>>> getAllBlogs();
 }

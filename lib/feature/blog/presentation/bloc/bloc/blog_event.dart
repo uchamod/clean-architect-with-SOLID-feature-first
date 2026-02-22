@@ -18,3 +18,5 @@ final class BlogUpload extends BlogEvent {
     required this.tags,
   });
 }
+
+final class Blogfetch extends BlogEvent {}

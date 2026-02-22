@@ -13,27 +13,27 @@ class BlogModel extends Blog {
 
   factory BlogModel.fromJson(Map<String, dynamic> json) {
     return BlogModel(
-      blogId: json["blogId"] as String,
-      blogTitle: json["blogTitle"] as String,
-      blogContent: json["blogContent"] as String,
-      posterId: json["posterId"] as String,
-      imageUrl: json["imageUrl"] as String,
+      blogId: json["id"] as String,
+      blogTitle: json["title"] as String,
+      blogContent: json["content"] as String,
+      posterId: json["poster_id"] as String,
+      imageUrl: json["img_url"] as String,
       tags: List<String>.from(json["tags"]) ?? [],
-      updatedAt: json["updatedAt"] == null
+      updatedAt: json["updated_at"] == null
           ? DateTime.now()
-          : DateTime.parse(json["updatedAt"]),
+          : DateTime.parse(json["updated_at"]),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "blogId": blogId,
-      "blogTitle": blogTitle,
-      "blogContent": blogContent,
-      "posterId": posterId,
-      "imageUrl": imageUrl,
+      "id": blogId,
+      "title": blogTitle,
+      "content": blogContent,
+      "poster_id": posterId,
+      "img_url": imageUrl,
       "tags": tags,
-      "updatedAt": updatedAt.toIso8601String(),
+      "updated_at": updatedAt.toIso8601String(),
     };
   }
 

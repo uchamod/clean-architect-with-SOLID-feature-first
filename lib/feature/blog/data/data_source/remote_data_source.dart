@@ -4,20 +4,20 @@ import 'package:clen_archetecture_bloc_app/core/error/exception.dart';
 import 'package:clen_archetecture_bloc_app/feature/blog/data/models/blog_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-abstract interface class RemoteDataSource {
+abstract interface class BlogRemoteDataSource {
   Future<BlogModel> uploadBlog({required BlogModel blog});
   Future<String> uploadBlogImage({
     required BlogModel blog,
     required File image,
   });
 
-  //Future<List<BlogModel>> getAllBlogs();
+  Future<List<BlogModel>> getAllBlogs();
 }
 
-class RemoteDataSourceImpl implements RemoteDataSource {
+class BlogRemoteDataSourceImpl implements BlogRemoteDataSource {
   final SupabaseClient supabaseClient;
 
-  RemoteDataSourceImpl({required this.supabaseClient});
+  BlogRemoteDataSourceImpl({required this.supabaseClient});
 
   //upload blog data
   @override
@@ -46,25 +46,31 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           .from("blog_images")
           .upload(blog.blogId, image);
 
-      return await supabaseClient.storage
+      return supabaseClient.storage
           .from("blog_images")
           .getPublicUrl(blog.blogId);
     } on ServerException catch (e) {
+      print(e.toString());
       throw ServerException(message: e.toString());
     } catch (e) {
+      print(e.toString());
       throw ServerException(message: e.toString());
     }
   }
 
-  // //get all blogs
-  // @override
-  // Future<List<BlogModel>> getAllBlogs() async {
-  //   try {
-  //     return [];
-  //   } on PostgrestException catch (e) {
-  //     throw ServerException(message: e.toString());
-  //   } catch (e) {
-  //     throw ServerException(message: e.toString());
-  //   }
-  // }
+  //get all blogs
+  @override
+  Future<List<BlogModel>> getAllBlogs() async {
+    try {
+      final res = await supabaseClient.from("blogs").select("*");
+
+      return res.map((b) => BlogModel.fromJson(b)).toList();
+    } on PostgrestException catch (e) {
+      print(e.toString());
+      throw ServerException(message: e.toString());
+    } catch (e) {
+      print(e.toString());
+      throw ServerException(message: e.toString());
+    }
+  }
 }
