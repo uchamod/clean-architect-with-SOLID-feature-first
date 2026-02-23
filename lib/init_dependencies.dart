@@ -1,0 +1,24 @@
+import 'package:clen_archetecture_bloc_app/core/cubit/app_user_cubit/app_user_cubit.dart';
+import 'package:clen_archetecture_bloc_app/core/network/connection_checker.dart';
+import 'package:clen_archetecture_bloc_app/core/secrets/app_secrets.dart';
+import 'package:clen_archetecture_bloc_app/feature/auth/data/datasource/remote_data_source_impl.dart';
+import 'package:clen_archetecture_bloc_app/feature/auth/data/repository/auth_repository_impl.dart';
+import 'package:clen_archetecture_bloc_app/feature/auth/domain/repository/auth_repository.dart';
+import 'package:clen_archetecture_bloc_app/feature/auth/domain/usecase/get_current_user_usecase.dart';
+import 'package:clen_archetecture_bloc_app/feature/auth/domain/usecase/user_login_usecase.dart';
+import 'package:clen_archetecture_bloc_app/feature/auth/domain/usecase/user_register_usecase.dart';
+import 'package:clen_archetecture_bloc_app/feature/auth/presentation/bloc/auth_bloc.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/data/data_source/local_remote_data_source.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/data/data_source/remote_data_source.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/data/repository/blog_repository_impl.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/domain/repository/blog_repository.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/domain/usecase/blog_fetch.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/domain/usecase/blog_upload_usecase.dart';
+import 'package:clen_archetecture_bloc_app/feature/blog/presentation/bloc/bloc/blog_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+part 'init_dependencies.main.dart';
